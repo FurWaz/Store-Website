@@ -179,9 +179,10 @@ export class API {
 
         const path = route.buildPath();
         const body = route.buildBody();
+        const url = path.startsWith('http') ? path : `${API.protocol}://${API.host}/${path}`;
 
         const res = await fetch(
-            `${API.protocol}://${API.host}/${path}`,
+            url,
             {
                 method: route.method,
                 body: body,

@@ -26,6 +26,7 @@ class User {
     public cart: any[];
     public checkouts: any[];
     public token: string;
+    public pseudo: string;
 
     constructor(data: any) {
         this.id = data.id;
@@ -34,13 +35,15 @@ class User {
         this.cart = data.cart;
         this.checkouts = data.checkouts;
         this.token = data.token;
+        this.pseudo = data.pseudo;
     }
 
     public save() {
         localStorage.setItem('user', JSON.stringify({
             id: this.id,
             furwazId: this.furwazId,
-            token: this.token
+            token: this.token,
+            pseudo: this.pseudo
         }));
     }
 
@@ -51,16 +54,18 @@ class User {
         this.cart = data.cart ?? this.cart;
         this.checkouts = data.checkouts ?? this.checkouts
         this.token = data.token ?? this.token;
+        this.pseudo = data.pseudo ?? this.pseudo;
         this.save();
     }
 
-    // TODO : Implement this
-    // public async fetch() {
-    //     this.save();
-    //     const res = await API.RequestLogged(ROUTES.USERS.ME.GET());
-    //     if (res.status !== 200) return;
-    //     this.update(await res.data);
-    // }
+    public async fetch() {
+        const res = await API.Request(ROUTES.USERS.GET(this.furwazId));
+        if (res.error) {
+            console.error('User fetch error', res.message);
+            return;
+        }
+        this.update(res.data);
+    }
 }
 
 export default User;
