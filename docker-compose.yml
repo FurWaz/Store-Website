@@ -1,3 +1,4 @@
+name: store-website
 services:
   web:
     build: .
