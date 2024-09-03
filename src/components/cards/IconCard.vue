@@ -1,5 +1,5 @@
 <template>
-    <button class="flex relative" :class="clickable ? 'cursor-pointer' : 'cursor-default'">
+    <component :is="clickable ? 'button' : 'div'" class="flex relative">
         <div class="absolute w-full h-full rotate-[40deg]" style="z-index: 1;">
             <div class="flex w-full h-full p-[15%] grow space-x-[4%]" :class="clickable ? 'hover-bands' : ''">
                 <span class="flex grow w-full bg-prim-4 mt-[10%] shadow-md transition-all"
@@ -32,7 +32,7 @@
                 </g>
             </g>
         </svg>
-    </button>
+    </component>
 </template>
 
 <script lang="ts">

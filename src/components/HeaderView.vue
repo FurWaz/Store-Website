@@ -1,31 +1,27 @@
 <template>
     <div class="flex w-full h-fit px-4 py-2 justify-stat items-center space-x-8 border-b-4 border-slate-800">
-        <div class="flex space-x-4 justify-center items-center">
-            <IconCard class="w-10 h-10" :animate="false" :clickable="false" />
+        <RouterLink to="/" class="flex space-x-4 justify-center items-center">
+            <IconCard class="w-10 h-10" :animate="false" />
             <h1 class="text-xl font-bold"> Store </h1>
-        </div>
+        </RouterLink>
         <div class="flex grow w-full h-fit space-x-8 justify-center items-center">
 
         </div>
         <div class="flex w-fit h-fit justify-center items-center">
             <div v-if="User.CurrentUser" class="flex w-fit h-fit justify-center items-center">
-                <button @click="logout"
-                    class="p-1 rounded-md bg-slate-600 border-2 border-transparent hover:border-slate-500 transition-all">
-                    <div class="flex space-x-2">
-                        <p class="whitespace-nowrap font-semibold px-1">
-                            {{ User.CurrentUser.pseudo }}
-                        </p>
-                        <UserIcon class="w-6 h-6" />
-                    </div>
-                </button>
+                <ButtonView to="/account">
+                    <p class="whitespace-nowrap font-semibold px-1">
+                        {{ User.CurrentUser.pseudo }}
+                    </p>
+                    <UserIcon class="w-6 h-6" />
+                </ButtonView>
             </div>
             <div v-else class="flex w-fit h-fit justify-center items-center">
-                <button @click="login"
-                    class="p-1 rounded-md bg-slate-600 border-2 border-transparent hover:border-slate-500 transition-all">
+                <ButtonView @click="login">
                     <p class="whitespace-nowrap font-semibold px-1">
                         Se connecter
                     </p>
-                </button>
+                </ButtonView>
             </div>
         </div>
     </div>
@@ -36,6 +32,7 @@ import { defineComponent } from 'vue';
 import IconCard from './cards/IconCard.vue';
 import User from '@/scripts/User';
 import FurWazPortal from '@/scripts/FurWazPortal';
+import ButtonView from './inputs/ButtonView.vue';
 
 import {
     UserIcon
@@ -45,7 +42,8 @@ export default defineComponent({
     name: 'HeaderView',
     components: {
         IconCard,
-        UserIcon
+        UserIcon,
+        ButtonView
     },
     setup() {
         return {

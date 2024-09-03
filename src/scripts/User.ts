@@ -59,7 +59,7 @@ class User {
     }
 
     public async fetch() {
-        const res = await API.Request(ROUTES.USERS.GET(this.furwazId));
+        const res = await API.Request(ROUTES.FURWAZ.USER.GET(this.furwazId));
         if (res.error) {
             console.error('User fetch error', res.message);
             return;
