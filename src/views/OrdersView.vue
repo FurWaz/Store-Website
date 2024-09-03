@@ -41,7 +41,7 @@ import {
 } from '@heroicons/vue/24/outline';
 
 export default defineComponent({
-    name: 'AccountView',
+    name: 'OrdersView',
     components: {
         UserCircleIcon,
         ChevronRightIcon,

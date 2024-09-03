@@ -1,5 +1,5 @@
-import { API } from "./API";
-import ROUTES from "./routes";
+import { API } from './API';
+import ROUTES from './routes';
 
 type FurWazPortalEvent = 'success' | 'error' | 'ready';
 type FurWazPortalOpenMode = 'popup' | 'redirect' | 'tab';
@@ -7,11 +7,11 @@ type FurWazPortalCallback = (data: any) => void;
 
 export default class FurWazPortal {
     private eventListeners: { [key: string]: FurWazPortalCallback[] } = {};
-    private portalToken: string|null = null;
+    private portalToken: string | null = null;
 
     private triggerEvent(event: FurWazPortalEvent, data: any) {
         if (this.eventListeners[event]) {
-            this.eventListeners[event].forEach(callback => {
+            this.eventListeners[event].forEach((callback) => {
                 callback(data);
             });
         }
@@ -24,37 +24,41 @@ export default class FurWazPortal {
             return;
         }
 
-        API.Request(ROUTES.AUTH.TOKEN(this.portalToken)).then((authRes) => {
-            if (authRes.error) {
-                console.error('FurWazPortal waitForAuth error', authRes.message);
-                return;
-            }
-            this.triggerEvent('success', authRes.data);
-        }).catch((err) => {
-            if (recursive > 0) {
-                setTimeout(() => {
-                    this.waitForAuth(recursive - 1);
-                }, 1000);
-            } else {
-                console.error('FurWazPortal waitForAuth error', err);
-                this.triggerEvent('error', err);
-            }
-        });
+        API.Request(ROUTES.AUTH.TOKEN(this.portalToken))
+            .then((authRes) => {
+                if (authRes.error) {
+                    console.error('FurWazPortal waitForAuth error', authRes.message);
+                    return;
+                }
+                this.triggerEvent('success', authRes.data);
+            })
+            .catch((err) => {
+                if (recursive > 0) {
+                    setTimeout(() => {
+                        this.waitForAuth(recursive - 1);
+                    }, 1000);
+                } else {
+                    console.error('FurWazPortal waitForAuth error', err);
+                    this.triggerEvent('error', err);
+                }
+            });
     }
 
     constructor() {
-        API.Request(ROUTES.AUTH.GENERATE).then((portalRes) => {
-            if (portalRes.error) {
-                console.error('FurWazPortal constructor error', portalRes.message);
-                this.triggerEvent('error', portalRes.message);
-                return;
-            }
-            this.portalToken = portalRes.data;
-            this.triggerEvent('ready', this.portalToken);
-        }).catch((err) => {
-            console.error('FurWazPortal constructor error', err);
-            this.triggerEvent('error', err);
-        });
+        API.Request(ROUTES.AUTH.GENERATE)
+            .then((portalRes) => {
+                if (portalRes.error) {
+                    console.error('FurWazPortal constructor error', portalRes.message);
+                    this.triggerEvent('error', portalRes.message);
+                    return;
+                }
+                this.portalToken = portalRes.data;
+                this.triggerEvent('ready', this.portalToken);
+            })
+            .catch((err) => {
+                console.error('FurWazPortal constructor error', err);
+                this.triggerEvent('error', err);
+            });
     }
 
     open(mode: FurWazPortalOpenMode = 'popup') {
@@ -79,7 +83,7 @@ export default class FurWazPortal {
             case 'redirect':
                 window.location.href = url + '&redirect=' + window.location.href;
                 break;
-        
+
             default: {
                 const width = 400;
                 const height = 650;

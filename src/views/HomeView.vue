@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-col w-full h-fit">
+    <div class="flex flex-col w-full h-full overflow-scroll">
         <div class="show-up flex flex-col md:flex-row w-full h-fit p-12 justify-center items-center md:space-x-8">
             <IconCard class="w-20 h-20 md:w-32 md:h-32" :clickable="false" />
-            <h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold"> FurWaz Store </h1>
+            <h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold">FurWaz Store</h1>
         </div>
         <div class="flex w-full h-fit justify-center items-center space-x-2 px-4">
             <InputView class="max-w-full w-80" name="search" placeholder="Rechercher" />
@@ -11,7 +11,7 @@
             </ButtonView>
         </div>
         <div class="flex flex-wrap justify-center items-center p-4">
-            <ProductCard v-for="(product, index) in products" :key="index" :product="product" />
+            <ProductCard v-for="(product, index) in products" :key="index" :product="product" class="m-8" />
         </div>
     </div>
 </template>

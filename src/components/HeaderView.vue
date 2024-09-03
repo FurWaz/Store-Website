@@ -1,12 +1,12 @@
 <template>
-    <div class="flex w-full h-fit px-4 py-2 justify-stat items-center space-x-8 border-b-4 border-slate-800">
+    <div
+        class="flex w-full h-fit px-4 py-2 justify-stat items-center space-x-8 border-b-4 border-slate-800"
+    >
         <RouterLink to="/" class="flex space-x-4 justify-center items-center">
             <IconCard class="w-10 h-10" :animate="false" />
-            <h1 class="text-xl font-bold"> Store </h1>
+            <h1 class="text-xl font-bold">Store</h1>
         </RouterLink>
-        <div class="flex grow w-full h-fit space-x-8 justify-center items-center">
-
-        </div>
+        <div class="flex grow w-full h-fit space-x-8 justify-center items-center"></div>
         <div class="flex w-fit h-fit justify-center items-center">
             <div v-if="User.CurrentUser" class="flex w-fit h-fit justify-center items-center">
                 <ButtonView to="/account">
@@ -18,9 +18,7 @@
             </div>
             <div v-else class="flex w-fit h-fit justify-center items-center">
                 <ButtonView @click="login">
-                    <p class="whitespace-nowrap font-semibold px-1">
-                        Se connecter
-                    </p>
+                    <p class="whitespace-nowrap font-semibold px-1">Se connecter</p>
                 </ButtonView>
             </div>
         </div>
@@ -34,9 +32,7 @@ import User from '@/scripts/User';
 import FurWazPortal from '@/scripts/FurWazPortal';
 import ButtonView from './inputs/ButtonView.vue';
 
-import {
-    UserIcon
-} from '@heroicons/vue/24/outline';
+import { UserIcon } from '@heroicons/vue/24/outline';
 
 export default defineComponent({
     name: 'HeaderView',
@@ -63,7 +59,7 @@ export default defineComponent({
                 this.$forceUpdate();
             });
             portal.on('error', (error) => {
-                console.error("Failed to login user :", error);
+                console.error('Failed to login user :', error);
             });
             portal.on('ready', () => {
                 portal.open('popup');
