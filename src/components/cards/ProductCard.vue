@@ -30,6 +30,8 @@
 import { ShoppingCartIcon, Square2StackIcon } from '@heroicons/vue/24/outline';
 import { defineComponent } from 'vue';
 import ButtonView from '@/components/inputs/ButtonView.vue';
+import { API } from '@/scripts/API';
+import ROUTES from '@/scripts/routes';
 
 export default defineComponent({
     name: 'ProductCard',
@@ -46,12 +48,23 @@ export default defineComponent({
     },
     setup() {
         return {
-            app: null as any
+            app: { name: '- - - - - -' }
         };
     },
     mounted() {
-        this.app = { name: 'FullBowody' };
-        this.$forceUpdate();
+        this.fetchApp(this.product.appId);
+    },
+    methods: {
+        async fetchApp(id: number) {
+            const res = await API.Request(ROUTES.FURWAZ.APP.GET(id));
+            if (res.error) {
+                console.error('Error loading app : ', res.message);
+                return;
+            }
+
+            this.app = res.data;
+            this.$forceUpdate();
+        }
     }
 });
 </script>
