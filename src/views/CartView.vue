@@ -284,6 +284,8 @@ export default defineComponent({
                 return;
             }
 
+            this.updateIdForm();
+
             btn.setLoading(true);
             // TODO : Pass the user informations to the request
             const res = await API.RequestLogged(ROUTES.CHECKOUT.START(this.userInformations));
