@@ -10,10 +10,25 @@
         </div>
         <div v-if="checkout !== undefined && checkout !== null"
             class="show-up flex flex-col space-y-32 justify-center items-center">
-            <div class="flex flex-col justify-center items-center">
+            <div v-if="checkout.status.name === 'succeeded'" class="flex flex-col justify-center items-center">
                 <p class="text-3xl font-bold p-4">Commande validée ! ✨</p>
                 <p class="text-xl font-semibold">Tout s'est bien passé.</p>
                 <p class="text-xl font-semibold">Merci pour votre achat, et à bientôt !</p>
+            </div>
+            <div v-if="checkout.status.name === 'failed'" class="flex flex-col justify-center items-center">
+                <p class="text-3xl font-bold p-4">Commande échouée 😢</p>
+                <p class="text-xl font-semibold">Quelque chose ne s'est pas bien passé.</p>
+                <p class="text-xl font-semibold">Veuillez réessayer plus tard.</p>
+            </div>
+            <div v-if="checkout.status.name === 'pending'" class="flex flex-col justify-center items-center">
+                <p class="text-3xl font-bold p-4">En attente de validation ...</p>
+                <p class="text-xl font-semibold">Votre commande est en cours de traitement.</p>
+                <p class="text-xl font-semibold">Revenez plus tard pour voir son statut.</p>
+            </div>
+            <div v-if="checkout.status.name === 'canceled'" class="flex flex-col justify-center items-center">
+                <p class="text-3xl font-bold p-4">Commande annulée</p>
+                <p class="text-xl font-semibold">Votre commande a été annulée.</p>
+                <p class="text-xl font-semibold">Veuillez réessayer plus tard.</p>
             </div>
             <ButtonView to="/" class="show-down">
                 <p class="whitespace-nowrap font-semibold px-1">Revenir à l'accueil</p>
