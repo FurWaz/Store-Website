@@ -9,7 +9,8 @@ const router = createRouter({
         { path: '/order/:id', name: 'order', component: () => import('../views/AddProduct.vue') },
         { path: '/account', name: 'account', component: () => import('../views/AccountView.vue') },
         { path: '/account/cart', name: 'account-cart', component: () => import('../views/CartView.vue') },
-        { path: '/account/orders', name: 'account-orders', component: () => import('../views/OrdersView.vue') },
+        // { path: '/account/orders', name: 'account-orders', component: () => import('../views/OrdersView.vue') },
+        // { path: '/account/infos', name: 'account-infos', component: () => import('../views/InfosView.vue') },
         { path: '/checkout', name: 'account-checkout', component: () => import('../views/CheckoutView.vue') },
 
         { path: '/:catchAll(.*)', name: 'not-found', component: () => import('../views/NotFound.vue') }
