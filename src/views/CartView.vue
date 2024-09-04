@@ -286,9 +286,6 @@ export default defineComponent({
 
         this.fetchCart();
         this.updateIdForm();
-        setTimeout(() => {
-            this.updateIdForm();
-        }, 500);
     },
     watch: {
         $route() {
@@ -320,6 +317,7 @@ export default defineComponent({
             }
 
             User.CurrentUser?.update(res.data);
+            this.updateIdForm();
             this.$forceUpdate();
 
             btn.setLoading(false);

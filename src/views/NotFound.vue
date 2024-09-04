@@ -24,7 +24,6 @@ import { defineComponent } from 'vue';
 import IconCard from '@/components/cards/IconCard.vue';
 import ButtonView from '../components/inputs/ButtonView.vue';
 import GetText from '@/components/inputs/GetText.vue';
-import router from '@/router';
 
 export default defineComponent({
     name: 'HomeView',
