@@ -111,7 +111,7 @@
                                             <GetText file="cart" code="lastName" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="lastname"
-                                            :value="User.CurrentUser?.lastName" autocomplete="family-name"
+                                            :value="User.CurrentUser?.lastName || ''" autocomplete="family-name"
                                             placeholder="cart::lastName" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -119,7 +119,7 @@
                                             <GetText file="cart" code="firstName" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="firstname"
-                                            :value="User.CurrentUser?.firstName" autocomplete="given-name"
+                                            :value="User.CurrentUser?.firstName || ''" autocomplete="given-name"
                                             placeholder="cart::firstName" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -127,7 +127,7 @@
                                             <GetText file="cart" code="email" />
                                         </p>
                                         <InputView @input="updateIdForm" type="email" name="email"
-                                            :value="User.CurrentUser?.email" autocomplete="email"
+                                            :value="User.CurrentUser?.email || ''" autocomplete="email"
                                             placeholder="cart::email" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -135,7 +135,7 @@
                                             <GetText file="cart" code="phone" />
                                         </p>
                                         <InputView @input="updateIdForm" type="phone" name="phone"
-                                            :value="User.CurrentUser?.phone" autocomplete="phone"
+                                            :value="User.CurrentUser?.phone || ''" autocomplete="phone"
                                             placeholder="cart::phone" />
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                                             <GetText file="cart" code="address" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="address"
-                                            :value="User.CurrentUser?.address" autocomplete="street-address"
+                                            :value="User.CurrentUser?.address || ''" autocomplete="street-address"
                                             placeholder="cart::address" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -154,7 +154,7 @@
                                             <GetText file="cart" code="city" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="city"
-                                            :value="User.CurrentUser?.city" autocomplete="address-level2"
+                                            :value="User.CurrentUser?.city || ''" autocomplete="address-level2"
                                             placeholder="cart::city" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -162,7 +162,7 @@
                                             <GetText file="cart" code="zip" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="zip"
-                                            :value="User.CurrentUser?.postalCode" autocomplete="postal-code"
+                                            :value="User.CurrentUser?.postalCode || ''" autocomplete="postal-code"
                                             placeholder="cart::zip" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
@@ -170,7 +170,7 @@
                                             <GetText file="cart" code="country" />
                                         </p>
                                         <InputView @input="updateIdForm" type="text" name="country"
-                                            :value="User.CurrentUser?.country" autocomplete="country-name"
+                                            :value="User.CurrentUser?.country || ''" autocomplete="country-name"
                                             placeholder="cart::country" />
                                     </div>
                                 </div>
