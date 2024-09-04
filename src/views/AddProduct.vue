@@ -33,7 +33,9 @@ export default defineComponent({
                     const user = new User({ ...data.user, token: data.token });
                     await user.fetch();
                     user.save();
-                    window.location.reload();
+                    this.$forceUpdate();
+                    (window as any).header?.$forceUpdate();
+                    resolve(true);
                 });
                 portal.on('error', (error) => {
                     console.error('Failed to login user :', error);

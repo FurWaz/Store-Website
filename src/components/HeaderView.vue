@@ -50,6 +50,9 @@ export default defineComponent({
             User
         };
     },
+    mounted() {
+        (window as any).header = this;
+    },
     methods: {
         logout() {
             User.Forget();
@@ -58,8 +61,8 @@ export default defineComponent({
             const portal = new FurWazPortal();
             portal.on('success', async (data) => {
                 const user = new User({ ...data.user, token: data.token });
-                user.save();
                 await user.fetch();
+                user.save();
                 this.$forceUpdate();
             });
             portal.on('error', (error) => {
