@@ -34,7 +34,6 @@ export default defineComponent({
                     await user.fetch();
                     user.save();
                     this.$forceUpdate();
-                    (window as any).header?.$forceUpdate();
                     resolve(true);
                 });
                 portal.on('error', (error) => {

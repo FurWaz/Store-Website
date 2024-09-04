@@ -11,7 +11,7 @@
             <div v-if="User.CurrentUser" class="flex w-fit h-fit justify-center items-center">
                 <ButtonView to="/account">
                     <p class="whitespace-nowrap font-semibold px-1">
-                        {{ User.CurrentUser.pseudo }}
+                        {{ User.CurrentUser?.pseudo }}
                     </p>
                     <UserIcon class="w-6 h-6" />
                 </ButtonView>
@@ -51,7 +51,9 @@ export default defineComponent({
         };
     },
     mounted() {
-        (window as any).header = this;
+        setInterval(() => {
+            this.$forceUpdate();
+        }, 1000);
     },
     methods: {
         logout() {
