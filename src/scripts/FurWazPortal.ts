@@ -5,6 +5,10 @@ type FurWazPortalEvent = 'success' | 'error' | 'ready';
 type FurWazPortalOpenMode = 'popup' | 'redirect' | 'tab';
 type FurWazPortalCallback = (data: any) => void;
 
+function isMobile() {
+    return window.innerWidth <= 768;
+}
+
 export default class FurWazPortal {
     private eventListeners: { [key: string]: FurWazPortalCallback[] } = {};
     private portalToken: string | null = null;
@@ -61,7 +65,7 @@ export default class FurWazPortal {
             });
     }
 
-    open(mode: FurWazPortalOpenMode = 'popup') {
+    open(mode: FurWazPortalOpenMode = (isMobile()? 'redirect': 'popup')) {
         if (!this.portalToken) {
             console.error('FurWazPortal open error', 'portalToken not found');
             this.triggerEvent('error', 'portalToken not found');
