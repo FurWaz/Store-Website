@@ -31,6 +31,7 @@ export default defineComponent({
                 const portal = new FurWazPortal();
                 portal.on('success', async (data) => {
                     const user = new User({ ...data.user, token: data.token });
+                    await user.fetch();
                     user.save();
                     window.location.reload();
                 });

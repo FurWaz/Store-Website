@@ -72,6 +72,8 @@ export default class FurWazPortal {
             return;
         }
 
+        this.waitForAuth();
+
         const url = `https://furwaz.fr/portal?token=${this.portalToken}`;
         switch (mode) {
             case 'tab': {
@@ -104,8 +106,6 @@ export default class FurWazPortal {
                 break;
             }
         }
-
-        this.waitForAuth();
     }
 
     on(event: FurWazPortalEvent, callback: FurWazPortalCallback) {
