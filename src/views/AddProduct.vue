@@ -56,7 +56,9 @@ export default defineComponent({
                 console.error('Error adding product to cart : ', res.message);
                 return;
             }
-            this.$router.push('/account/cart');
+
+            // using window.location.href instead of this.$router.push to force reload (and display that is user connected)
+            window.location.href = '/account/cart';
         }
     }
 });
