@@ -2,10 +2,12 @@
     <div class="flex flex-col w-full h-full overflow-scroll">
         <div class="show-up flex flex-col md:flex-row w-full h-fit p-12 justify-center items-center md:space-x-8">
             <IconCard class="w-20 h-20 md:w-32 md:h-32" :clickable="false" />
-            <h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold">FurWaz Store</h1>
+            <h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold">
+                <GetText file="home" code="title" />
+            </h1>
         </div>
         <div class="flex w-full h-fit justify-center items-center space-x-2 px-4">
-            <InputView class="max-w-full w-80" name="search" placeholder="Rechercher" />
+            <InputView class="max-w-full w-80" name="search" placeholder="verbs::search" />
             <ButtonView @click="search">
                 <MagnifyingGlassIcon class="w-6 h-6" />
             </ButtonView>
@@ -25,6 +27,7 @@ import ButtonView from '@/components/inputs/ButtonView.vue';
 import { API } from '@/scripts/API';
 import ROUTES from '@/scripts/routes';
 import ProductCard from '@/components/cards/ProductCard.vue';
+import GetText from '@/components/inputs/GetText.vue';
 
 export default defineComponent({
     name: 'HomeView',
@@ -33,7 +36,8 @@ export default defineComponent({
         InputView,
         ButtonView,
         MagnifyingGlassIcon,
-        ProductCard
+        ProductCard,
+        GetText
     },
     setup() {
         return {

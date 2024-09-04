@@ -2,7 +2,9 @@
     <div class="flex flex-col w-full h-full min-h-0 max-h-full">
         <div class="show-up flex w-full h-fit p-4 pb-2 md:p-6 justify-center items-center space-x-4 md:space-x-8">
             <ShoppingCartIcon class="w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16" />
-            <h1 class="text-center text-xl md:text-2xl lg:text-4xl font-bold">Mon panier</h1>
+            <h1 class="text-center text-xl md:text-2xl lg:text-4xl font-bold">
+                <GetText file="cart" code="title" />
+            </h1>
         </div>
         <div v-if="products && products.length > 0"
             class="flex flex-col md:flex-row h-full min-h-0 max-h-full w-full p-2 md:p-4">
@@ -10,10 +12,18 @@
                 :class="step === 'view' ? 'h-[100%] md:w-[100%]' : 'h-[0%] md:h-[100%] md:w-[0%]'">
                 <div class="show-right flex flex-col h-full border-4 border-slate-600 rounded-md md:mr-4">
                     <div class="flex w-full h-fit bg-slate-600 justify-center items-center p-2">
-                        <p class="w-[50%] lg:w-[20%] text-xl font-bold">Nom</p>
-                        <p class="hidden lg:flex w-[50%] text-xl font-bold">Description</p>
-                        <p class="w-[25%] lg:w-[15%] text-xl font-bold text-center">Quantité</p>
-                        <p class="w-[25%] lg:w-[15%] text-xl font-bold text-center">Prix</p>
+                        <p class="w-[50%] lg:w-[20%] text-xl font-bold">
+                            <GetText file="cart" code="product" />
+                        </p>
+                        <p class="hidden lg:flex w-[50%] text-xl font-bold">
+                            <GetText file="cart" code="description" />
+                        </p>
+                        <p class="w-[25%] lg:w-[15%] text-xl font-bold text-center">
+                            <GetText file="cart" code="quantity" />
+                        </p>
+                        <p class="w-[25%] lg:w-[15%] text-xl font-bold text-center">
+                            <GetText file="cart" code="price" />
+                        </p>
                     </div>
                     <div class="flex w-full h-full max-w-full min-h-0 max-h-full overflow-auto">
                         <div class="flex flex-col space-y-2 w-full h-fit p-2">
@@ -26,7 +36,9 @@
             <div class="show-left flex flex-row md:flex-col w-full md:min-w-[40%] lg:min-w-[25%] md:w-fit h-fit md:h-full border-4 border-slate-600 rounded-md"
                 :class="step === 'view' ? 'mt-2 md:mt-0' : ''">
                 <div class="hidden md:flex w-full h-fit bg-slate-600 justify-center items-center p-2">
-                    <p class="text-xl font-bold">Récapitulatif</p>
+                    <p class="text-xl font-bold">
+                        <GetText file="cart" code="summary" />
+                    </p>
                 </div>
                 <div
                     class="flex flex-col grow w-full min-h-0 max-h-full h-full md:h-fit justify-center md:justify-end p-2 md:p-4">
@@ -52,7 +64,9 @@
                     </div>
                     <span class="hidden md:flex h-1 w-full rounded-full bg-slate-600 my-2 md:my-4" />
                     <div class="flex justify-between w-full h-fit">
-                        <p class="text-xl md:text-3xl font-bold">Total</p>
+                        <p class="text-xl md:text-3xl font-bold">
+                            <GetText file="cart" code="total" />
+                        </p>
                         <p class="text-lg md:text-2xl font-semibold ml-8 px-4 rounded-md bg-slate-600 text-center">
                             {{ total }}
                         </p>
@@ -61,7 +75,9 @@
                 <span v-if="step === 'view'" class="hidden md:flex w-full h-1 bg-slate-600" />
                 <div v-if="step === 'view'" class="flex w-full h-fit p-2 md:p-4">
                     <ButtonView @click="goToInformations" class="flex w-full h-fit text-orange-500">
-                        <p class="text-md font-semibold">Continuer</p>
+                        <p class="text-md font-semibold">
+                            <GetText file="verbs" code="continue" />
+                        </p>
                     </ButtonView>
                 </div>
             </div>
@@ -72,11 +88,11 @@
                     <div class="hidden md:flex w-full h-fit bg-slate-600 justify-center items-center p-2">
                         <p class="text-xl font-bold overflow-hidden text-center transition-all duration-500 ease-out-expo"
                             :class="step === 'informations' ? 'w-full' : 'w-0'">
-                            Informations
+                            <GetText file="cart" code="informations" />
                         </p>
                         <p class="text-xl font-bold overflow-hidden text-center transition-all duration-500 ease-out-expo"
                             :class="step === 'payment' ? 'w-full' : 'w-0'">
-                            Paiement
+                            <GetText file="cart" code="payment" />
                         </p>
                     </div>
                     <div class="flex grow w-full min-h-0 max-h-full h-fit p-2 md:p-4">
@@ -84,67 +100,84 @@
                             :class="step === 'informations' ? 'w-full' : 'w-0'">
                             <div>
                                 <p class="text-lg font-semibold text-center">
-                                    Pour valider la commande, veuillez renseigner vos informations
+                                    <GetText file="cart" code="informationsTitle" />
                                 </p>
                             </div>
                             <div
                                 class="flex flex-col md:flex-row w-fit max-w-full p-4 border-2 border-slate-600 rounded-md space-y-2 md:space-y-0 md:space-x-8 m-auto">
                                 <div class="flex flex-col justify-start items-start space-y-4">
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Nom</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="lastName" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="lastname"
                                             :value="User.CurrentUser?.lastName" autocomplete="family-name"
-                                            placeholder="Nom" />
+                                            placeholder="cart::lastName" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Prénom</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="firstName" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="firstname"
                                             :value="User.CurrentUser?.firstName" autocomplete="given-name"
-                                            placeholder="Prénom" />
+                                            placeholder="cart::firstName" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Email</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="email" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="email" name="email"
-                                            :value="User.CurrentUser?.email" autocomplete="email" placeholder="Email" />
+                                            :value="User.CurrentUser?.email" autocomplete="email"
+                                            placeholder="cart::email" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Téléphone</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="phone" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="phone" name="phone"
                                             :value="User.CurrentUser?.phone" autocomplete="phone"
-                                            placeholder="Téléphone" />
+                                            placeholder="cart::phone" />
                                     </div>
                                 </div>
                                 <span class="w-1 h-full bg-slate-600 rounded-full" />
                                 <div class="flex flex-col justify-start items-start space-y-4">
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Adresse</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="address" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="address"
                                             :value="User.CurrentUser?.address" autocomplete="street-address"
-                                            placeholder="Adresse" />
+                                            placeholder="cart::address" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Ville</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="city" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="city"
                                             :value="User.CurrentUser?.city" autocomplete="address-level2"
-                                            placeholder="Ville" />
+                                            placeholder="cart::city" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Code postal</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="zip" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="zip"
                                             :value="User.CurrentUser?.postalCode" autocomplete="postal-code"
-                                            placeholder="Code postal" />
+                                            placeholder="cart::zip" />
                                     </div>
                                     <div class="flex space-x-4 justify-between items-center w-full">
-                                        <p class="text-md font-semibold">Pays</p>
+                                        <p class="text-md font-semibold">
+                                            <GetText file="cart" code="country" />
+                                        </p>
                                         <InputView @input="updateIdForm" type="text" name="country"
                                             :value="User.CurrentUser?.country" autocomplete="country-name"
-                                            placeholder="Pays" />
+                                            placeholder="cart::country" />
                                     </div>
                                 </div>
                             </div>
                             <div class="flex space-x-4 m-auto">
                                 <p class="text-lg font-semibold text-center">
-                                    Sauvegarder mes informations
+                                    <GetText file="cart" code="saveInfos" />
                                 </p>
                                 <InputView type="checkbox" name="save" />
                             </div>
@@ -163,11 +196,15 @@
                         <ButtonView @click="setStep(step === 'payment' ? 'informations' : 'view')"
                             class="flex w-fit h-fit">
                             <ChevronLeftIcon class="w-6 h-6" />
-                            <p class="text-md font-semibold">Retour</p>
+                            <p class="text-md font-semibold">
+                                <GetText file="verbs" code="back" />
+                            </p>
                         </ButtonView>
                         <ButtonView :disabled="disableContinue" @click="goToPayment"
                             class="flex w-fit h-fit text-orange-500">
-                            <p class="text-md font-semibold">Continuer</p>
+                            <p class="text-md font-semibold">
+                                <GetText file="verbs" code="continue" />
+                            </p>
                             <ChevronRightIcon class="w-6 h-6" />
                         </ButtonView>
                     </div>
@@ -176,17 +213,30 @@
         </div>
         <div v-if="products && products.length === 0"
             class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
-            <p class="text-2xl font-semibold">Votre panier est vide !</p>
-            <p class="text-lg font-semibold">Ajoutez des produits pour continuer.</p>
+            <p class="text-2xl font-semibold">
+                <GetText file="cart" code="emptyCart" />
+            </p>
+            <p class="text-lg font-semibold">
+                <GetText file="cart" code="emptyCartDesc" />
+            </p>
             <div class="show-down flex pt-16">
                 <ButtonView to="/">
-                    <p class="text-md font-semibold">Retourner à l'accueil</p>
+                    <p class="text-md font-semibold">
+                        <GetText file="cart" code="emptyCartBtn" />
+                    </p>
                 </ButtonView>
             </div>
         </div>
         <div v-if="!products" class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
-            <p class="text-2xl font-semibold">Chargement du panier</p>
-            <p class="text-lg font-semibold">Veuillez patienter un instant ...</p>
+            <p class="text-2xl font-semibold">
+                <GetText file="cart" code="loadingCart" />
+            </p>
+            <p class="text-lg font-semibold">
+                <GetText file="cart" code="loadingCartDesc" />
+            </p>
+            <div class="pt-8">
+                <LoadingIcon class="w-8 h-8" />
+            </div>
         </div>
     </div>
 </template>
@@ -202,6 +252,8 @@ import { API } from '@/scripts/API';
 import ROUTES from '@/scripts/routes';
 import InputView from '@/components/inputs/InputView.vue';
 import StripeCard from '@/components/cards/StripeCard.vue';
+import GetText from '@/components/inputs/GetText.vue';
+import LoadingIcon from '@/components/cards/LoadingIcon.vue';
 
 export default defineComponent({
     name: 'HomeView',
@@ -212,7 +264,9 @@ export default defineComponent({
         ChevronRightIcon,
         ChevronLeftIcon,
         InputView,
-        StripeCard
+        StripeCard,
+        GetText,
+        LoadingIcon
     },
     setup() {
         const queryStep = new URLSearchParams(window.location.search).get('step');

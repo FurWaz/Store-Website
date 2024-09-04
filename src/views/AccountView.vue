@@ -13,7 +13,7 @@
                     :style="`animation-delay: ${index + 1}00ms`">
                     <component :is="option.icon" class="w-6 h-6" />
                     <p class="flex grow whitespace-nowrap font-semibold px-1 pr-8">
-                        {{ option.name }}
+                        <GetText file="account" :code="option.code" />
                     </p>
                     <ChevronRightIcon class="w-6 h-6" />
                 </RouterLink>
@@ -21,7 +21,9 @@
         </div>
         <div class="flex p-4 justify-center">
             <ButtonView @click="logout" class="show-down">
-                <p class="whitespace-nowrap font-semibold px-1">Se déconnecter</p>
+                <p class="whitespace-nowrap font-semibold px-1">
+                    <GetText file="verbs" code="logOut" />
+                </p>
             </ButtonView>
         </div>
     </div>
@@ -39,21 +41,23 @@ import {
     IdentificationIcon,
     ArchiveBoxIcon
 } from '@heroicons/vue/24/outline';
+import GetText from '@/components/inputs/GetText.vue';
 
 export default defineComponent({
     name: 'AccountView',
     components: {
         UserCircleIcon,
         ChevronRightIcon,
-        ButtonView
+        ButtonView,
+        GetText
     },
     setup() {
         return {
             User,
             options: [
-                { icon: ShoppingCartIcon, name: 'Mon panier', to: '/account/cart' },
-                { icon: ArchiveBoxIcon, name: 'Mes commandes', to: '/account/orders' },
-                { icon: IdentificationIcon, name: 'Mes informations', to: '/account/infos' }
+                { icon: ShoppingCartIcon, code: 'myCart', to: '/account/cart' },
+                { icon: ArchiveBoxIcon, code: 'myOrders', to: '/account/orders' },
+                { icon: IdentificationIcon, code: 'myInfos', to: '/account/infos' }
             ]
         };
     },

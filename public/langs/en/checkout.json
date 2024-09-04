@@ -1,0 +1,14 @@
+{
+    "loading": "Retreiving order",
+    "error": "Woops!",
+    "errorDesc": "An error occured while retreiving the order. Please try again later.",
+    "backHome": "Back to home",
+    "commandSuccess": "Order placed ! ✨",
+    "commandSuccessDesc": "Your order has been placed successfully.\nYou will receive a confirmation email shortly.",
+    "commandFailed": "Order failed 😢",
+    "commandFailedDesc": "An error occured while placing your order.\nPlease try again later.",
+    "commandPending": "Order pending ...",
+    "commandPendingDesc": "Your order is being processed.\nPlease wait while we finalize it.",
+    "commandCanceled": "Order canceled",
+    "commandCanceledDesc": "Your order has been canceled.\nYou can place a new order whenever you want."
+}

@@ -1,37 +1,60 @@
 <template>
     <div class="flex grow flex-col w-full h-full justify-center items-center">
         <div v-if="checkout === undefined" class="flex flex-col space-y-4 justify-center items-center">
-            <p class="text-2xl font-bold">Récupération de la commande</p>
+            <p class="text-2xl font-bold">
+                <GetText file="checkout" code="loading" />
+            </p>
             <LoadingIcon class="w-8 h-8" />
         </div>
         <div v-if="checkout === null" class="flex flex-col space-y-4 justify-center items-center">
-            <p class="text-2xl font-bold">Woops !</p>
-            <p class="text-xl font-semibold">Impossible de récupérer la commande :/</p>
+            <p class="text-2xl font-bold">
+                <GetText file="checkout" code="error" />
+            </p>
+            <p class="text-xl font-semibold">
+                <GetText file="checkout" code="errorDesc" />
+            </p>
         </div>
         <div v-if="checkout !== undefined && checkout !== null"
             class="show-up flex flex-col space-y-32 justify-center items-center">
             <div v-if="checkout.status.name === 'succeeded'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">Commande validée ! ✨</p>
-                <p class="text-xl font-semibold">Tout s'est bien passé.</p>
-                <p class="text-xl font-semibold">Merci pour votre achat, et à bientôt !</p>
+                <p class="text-3xl font-bold p-4">
+                    <GetText file="checkout" code="commandSuccess" />
+                </p>
+                <p class="text-xl font-semibold text-center">
+                    <GetText file="checkout" code="commandSuccessDesc" />
+                </p>
             </div>
             <div v-if="checkout.status.name === 'failed'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">Commande échouée 😢</p>
-                <p class="text-xl font-semibold">Quelque chose ne s'est pas bien passé.</p>
-                <p class="text-xl font-semibold">Veuillez réessayer plus tard.</p>
+                <p class="text-3xl font-bold p-4">
+                    <GetText file="checkout" code="commandFailed" />
+                </p>
+                <p class="text-xl font-semibold text-center">
+                    <GetText file="checkout" code="commandFailedDesc" />
+                </p>
             </div>
             <div v-if="checkout.status.name === 'pending'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">En attente de validation ...</p>
-                <p class="text-xl font-semibold">Votre commande est en cours de traitement.</p>
-                <p class="text-xl font-semibold">Revenez plus tard pour voir son statut.</p>
+                <p class="text-3xl font-bold p-4">
+                    <GetText file="checkout" code="commandPending" />
+                </p>
+                <p class="text-xl font-semibold text-center">
+                    <GetText file="checkout" code="commandPendingDesc" />
+                </p>
+                <div class="pt-8">
+                    <LoadingIcon class="w-8 h-8" />
+                </div>
             </div>
             <div v-if="checkout.status.name === 'canceled'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">Commande annulée</p>
-                <p class="text-xl font-semibold">Votre commande a été annulée.</p>
-                <p class="text-xl font-semibold">Veuillez réessayer plus tard.</p>
+                <p class="text-3xl font-bold p-4">
+                    <GetText file="checkout" code="commandCanceled" />
+                </p>
+                <p class="text-xl font-semibold text-center">
+                    <GetText file="checkout" code="commandCanceledDesc" />
+                </p>
             </div>
             <ButtonView to="/" class="show-down">
-                <p class="whitespace-nowrap font-semibold px-1">Revenir à l'accueil</p>
+                <p class="whitespace-nowrap font-semibold px-1">
+                    <GetText file="checkout" code="backHome" />
+                </p>
             </ButtonView>
         </div>
     </div>
@@ -48,12 +71,14 @@ import {
 } from '@heroicons/vue/24/outline';
 import LoadingIcon from '@/components/cards/LoadingIcon.vue';
 import ButtonView from '@/components/inputs/ButtonView.vue';
+import GetText from '@/components/inputs/GetText.vue';
 
 export default defineComponent({
     name: 'OrdersView',
     components: {
         LoadingIcon,
-        ButtonView
+        ButtonView,
+        GetText
     },
     setup() {
         return {
@@ -61,9 +86,12 @@ export default defineComponent({
             checkout: undefined as any
         };
     },
-    mounted() {
+    async mounted() {
         let intentId = this.$route.query.intentId ?? this.$route.query.payment_intent;
-        this.fetchCheckout(intentId as string);
+        await this.fetchCheckout(intentId as string);
+        if (this.checkout.status.name === 'pending') {
+            setInterval(() => this.fetchCheckout(intentId as string), 1000);
+        }
     },
     methods: {
         async fetchCheckout(intentId: string) {
