@@ -13,7 +13,8 @@
             </ButtonView>
         </div>
         <div class="flex flex-wrap justify-center items-center p-4">
-            <ProductCard v-for="(product, index) in products" :key="index" :product="product" class="m-8" />
+            <ProductCard v-for="(product, index) in products" :key="index" :product="product"
+                class="m-4 md:m-6 lg:m-8" />
         </div>
     </div>
 </template>

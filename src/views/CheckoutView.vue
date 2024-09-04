@@ -1,42 +1,42 @@
 <template>
     <div class="flex grow flex-col w-full h-full justify-center items-center">
-        <div v-if="checkout === undefined" class="flex flex-col space-y-4 justify-center items-center">
-            <p class="text-2xl font-bold">
+        <div v-if="checkout === undefined" class="flex flex-col space-y-4 justify-center items-center p-2">
+            <p class="text-2xl font-bold text-center">
                 <GetText file="checkout" code="loading" />
             </p>
             <LoadingIcon class="w-8 h-8" />
         </div>
-        <div v-if="checkout === null" class="flex flex-col space-y-4 justify-center items-center">
-            <p class="text-2xl font-bold">
+        <div v-if="checkout === null" class="flex flex-col space-y-4 justify-center items-center p-2">
+            <p class="text-2xl font-bold text-center">
                 <GetText file="checkout" code="error" />
             </p>
-            <p class="text-xl font-semibold">
+            <p class="text-xl font-semibold text-center">
                 <GetText file="checkout" code="errorDesc" />
             </p>
         </div>
         <div v-if="checkout !== undefined && checkout !== null"
-            class="show-up flex flex-col space-y-32 justify-center items-center">
+            class="show-up flex flex-col space-y-32 justify-center items-center p-2">
             <div v-if="checkout.status.name === 'succeeded'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">
+                <p class="text-2xl md:text-3xl font-bold p-4 text-center">
                     <GetText file="checkout" code="commandSuccess" />
                 </p>
-                <p class="text-xl font-semibold text-center">
+                <p class="text-lg md:text-xl font-semibold text-center">
                     <GetText file="checkout" code="commandSuccessDesc" />
                 </p>
             </div>
             <div v-if="checkout.status.name === 'failed'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">
+                <p class="text-2xl md:text-3xl font-bold p-4 text-center">
                     <GetText file="checkout" code="commandFailed" />
                 </p>
-                <p class="text-xl font-semibold text-center">
+                <p class="text-lg md:text-xl font-semibold text-center">
                     <GetText file="checkout" code="commandFailedDesc" />
                 </p>
             </div>
             <div v-if="checkout.status.name === 'pending'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">
+                <p class="text-2xl md:text-3xl font-bold p-4 text-center">
                     <GetText file="checkout" code="commandPending" />
                 </p>
-                <p class="text-xl font-semibold text-center">
+                <p class="text-lg md:text-xl font-semibold text-center">
                     <GetText file="checkout" code="commandPendingDesc" />
                 </p>
                 <div class="pt-8">
@@ -44,10 +44,10 @@
                 </div>
             </div>
             <div v-if="checkout.status.name === 'canceled'" class="flex flex-col justify-center items-center">
-                <p class="text-3xl font-bold p-4">
+                <p class="text-2xl md:text-3xl font-bold p-4 text-center">
                     <GetText file="checkout" code="commandCanceled" />
                 </p>
-                <p class="text-xl font-semibold text-center">
+                <p class="text-lg md:text-xl font-semibold text-center">
                     <GetText file="checkout" code="commandCanceledDesc" />
                 </p>
             </div>
