@@ -32,9 +32,7 @@ export default defineComponent({
                 portal.on('success', async (data) => {
                     const user = new User({ ...data.user, token: data.token });
                     user.save();
-                    await user.fetch();
-                    this.$forceUpdate();
-                    resolve(true);
+                    window.location.reload();
                 });
                 portal.on('error', (error) => {
                     console.error('Failed to login user :', error);
@@ -56,9 +54,7 @@ export default defineComponent({
                 console.error('Error adding product to cart : ', res.message);
                 return;
             }
-
-            // using window.location.href instead of this.$router.push to force reload (and display that is user connected)
-            window.location.href = '/account/cart';
+            this.$router.push('/account/cart');
         }
     }
 });
