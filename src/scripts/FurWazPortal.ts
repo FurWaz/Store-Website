@@ -98,7 +98,8 @@ export default class FurWazPortal {
                 if (!tab) {
                     console.error('FurWazPortal open error', 'tab blocked');
                     this.open('redirect');
-                    return;
+                } else {
+                    this.waitForAuth();
                 }
                 break;
             }
@@ -117,13 +118,13 @@ export default class FurWazPortal {
                 if (!popup) {
                     console.error('FurWazPortal open error', 'popup blocked');
                     this.open('redirect');
-                    return;
-                } else popup.focus();
+                } else {
+                    popup.focus();
+                    this.waitForAuth();
+                }
                 break;
             }
         }
-
-        this.waitForAuth();
     }
 
     on(event: FurWazPortalEvent, callback: FurWazPortalCallback) {
