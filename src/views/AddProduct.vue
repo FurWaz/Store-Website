@@ -40,7 +40,7 @@ export default defineComponent({
                     console.error('Failed to login user :', error);
                 });
                 portal.on('ready', () => {
-                    portal.open('popup');
+                    portal.open();
                 });
             });
         }
