@@ -50,10 +50,13 @@ export default defineComponent({
             User
         };
     },
+    data() {
+        return {
+            currentUser: User.CurrentUser
+        };
+    },
     mounted() {
-        setInterval(() => {
-            this.$forceUpdate();
-        }, 1000);
+
     },
     methods: {
         logout() {

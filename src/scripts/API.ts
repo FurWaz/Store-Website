@@ -102,7 +102,7 @@ export class Response {
         let json: any = undefined;
         try {
             json = JSON.parse(text);
-        } catch (err) {}
+        } catch (err) { console.error(err); }
 
         if (!res.ok) {
             return new Response(
@@ -164,9 +164,7 @@ export class API {
 
     public static Setup(host: string) {
         API.host = API.SanatizeHost(host);
-        API.protocol = window.location.protocol.endsWith(':')
-            ? window.location.protocol.substring(0, window.location.protocol.length - 1)
-            : window.location.protocol;
+        API.protocol = 'https';
     }
 
     public static CheckSetup() {

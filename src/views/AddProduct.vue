@@ -25,29 +25,24 @@ export default defineComponent({
             return;
         }
 
-        let promise = new Promise((resolve) => { resolve(true); });
         if (!User.CurrentUser) {
-            promise = new Promise((resolve) => {
-                const portal = new FurWazPortal();
-                portal.on('success', async (data) => {
-                    const user = new User({ ...data.user, token: data.token });
-                    await user.fetch();
-                    user.save();
-                    this.$forceUpdate();
-                    resolve(true);
-                });
-                portal.on('error', (error) => {
-                    console.error('Failed to login user :', error);
-                });
-                portal.on('ready', () => {
-                    portal.open();
-                });
+            const portal = new FurWazPortal();
+            portal.on('success', async (data) => {
+                const user = new User({ ...data.user, token: data.token });
+                await user.fetch();
+                user.save();
+                window.location.reload();
+            });
+            portal.on('error', (error) => {
+                console.error('Failed to login user :', error);
+            });
+            portal.on('ready', () => {
+                portal.open();
             });
         }
-
-        promise.then(() => {
+        else {
             this.addProductToCart(parseInt(productId.toString()));
-        });
+        }
     },
     methods: {
         async addProductToCart(productId: number) {
