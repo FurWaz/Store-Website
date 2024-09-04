@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-import 'https://js.stripe.com/v3/';
 import { defineComponent } from 'vue';
 
 declare const Stripe: any;
@@ -24,7 +23,7 @@ export default defineComponent({
     },
     setup() {
         return {
-            stripe: Stripe(import.meta.env.VITE_STRIPE_KEY),
+            stripe: null as any,
             initialized: false,
             elements: null as any
         };
@@ -33,7 +32,35 @@ export default defineComponent({
         if (this.clientSecret) this.initialize();
     },
     methods: {
+        async loadStripeScript() {
+            if (this.stripe) return;
+
+            try {
+                await new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.id = 'stripe-js';
+                    script.src = 'https://js.stripe.com/v3/';
+                    script.async = true;
+
+                    script.onload = () => {
+                        resolve(true);
+                    };
+                    script.onerror = () => {
+                        reject(new Error('Stripe script failed to load.'));
+                    };
+
+                    document.head.appendChild(script);
+                });
+            } catch (error) {
+                console.error('Failed to load Stripe script : ', error);
+                return;
+            }
+
+            this.stripe = Stripe(import.meta.env.VITE_STRIPE_KEY);
+        },
         async initialize() {
+            await this.loadStripeScript();
+
             if (this.initialized) return;
             this.initialized = true;
 
