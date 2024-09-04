@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import User from '@/scripts/User';
+import FurWazPortal from '@/scripts/FurWazPortal';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
+    if (FurWazPortal.catchRedirectLogin(async (data: any) => {
+        const user = new User({ ...data.user, token: data.token });
+        await user.fetch();
+        user.save();
+        const url = new URL(window.location.href);
+        url.searchParams.delete('token');
+        window.location.href = url.href;
+    })) return;
+
     if (!User.CurrentUser && to.path.startsWith('/account')) {
         next({ name: 'home' });
     } else {

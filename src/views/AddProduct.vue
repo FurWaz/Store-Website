@@ -31,7 +31,7 @@ export default defineComponent({
                 const user = new User({ ...data.user, token: data.token });
                 await user.fetch();
                 user.save();
-                window.location.reload();
+                window.location.href = '/order/' + productId;
             });
             portal.on('error', (error) => {
                 console.error('Failed to login user :', error);

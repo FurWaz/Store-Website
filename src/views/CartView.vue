@@ -96,7 +96,7 @@
                         </p>
                     </div>
                     <div class="flex grow w-full min-h-0 max-h-full h-fit p-2 md:p-4">
-                        <div class="flex flex-col space-y-4 overflow-scroll transition-all duration-500 ease-out-expo"
+                        <div class="flex flex-col space-y-4 overflow-auto transition-all duration-500 ease-out-expo"
                             :class="step === 'informations' ? 'w-full' : 'w-0'">
                             <div>
                                 <p class="text-lg font-semibold text-center">

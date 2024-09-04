@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col w-full h-full overflow-scroll">
+    <div class="flex flex-col w-full h-full overflow-auto">
         <div class="show-up flex flex-col md:flex-row w-full h-fit p-12 justify-center items-center md:space-x-8">
             <IconCard class="w-20 h-20 md:w-32 md:h-32" :clickable="false" />
             <h1 class="text-center text-3xl md:text-4xl lg:text-6xl font-bold">

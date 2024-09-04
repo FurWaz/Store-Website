@@ -10,6 +10,18 @@ function isMobile() {
 }
 
 export default class FurWazPortal {
+    public static catchRedirectLogin(callback: (data: any) => void) {
+        const url = new URL(window.location.href);
+        const token = url.searchParams.get('token');
+        if (token) {
+            const portal = new FurWazPortal(token);
+            portal.on('ready', () => { portal.waitForAuth(); });
+            portal.on('success', callback);
+        }
+
+        return token !== null;
+    }
+
     private eventListeners: { [key: string]: FurWazPortalCallback[] } = {};
     private portalToken: string | null = null;
 
@@ -48,8 +60,9 @@ export default class FurWazPortal {
             });
     }
 
-    constructor() {
-        API.Request(ROUTES.AUTH.GENERATE)
+    constructor(portalToken?: string) {
+        if (!portalToken) {
+            API.Request(ROUTES.AUTH.GENERATE)
             .then((portalRes) => {
                 if (portalRes.error) {
                     console.error('FurWazPortal constructor error', portalRes.message);
@@ -63,6 +76,12 @@ export default class FurWazPortal {
                 console.error('FurWazPortal constructor error', err);
                 this.triggerEvent('error', err);
             });
+        } else {
+            setTimeout(() => {
+                this.portalToken = portalToken;
+                this.triggerEvent('ready', this.portalToken);
+            }, 10);
+        }
     }
 
     open(mode: FurWazPortalOpenMode = (isMobile()? 'tab': 'popup')) {
@@ -72,22 +91,20 @@ export default class FurWazPortal {
             return;
         }
 
-        this.waitForAuth();
-
         const url = `https://furwaz.fr/portal?token=${this.portalToken}`;
         switch (mode) {
             case 'tab': {
                 const tab = window.open(url, '_blank');
                 if (!tab) {
                     console.error('FurWazPortal open error', 'tab blocked');
-                    this.triggerEvent('error', 'tab blocked');
+                    this.open('redirect');
                     return;
                 }
                 break;
             }
 
             case 'redirect':
-                window.location.href = url + '&redirect=' + window.location.href;
+                window.location.href = url + '&redirect=' + window.location.href + "&token=" + this.portalToken;
                 break;
 
             default: {
@@ -99,13 +116,14 @@ export default class FurWazPortal {
                 const popup = window.open(url, 'FurWazPortal', features);
                 if (!popup) {
                     console.error('FurWazPortal open error', 'popup blocked');
-                    this.triggerEvent('error', 'popup blocked');
+                    this.open('redirect');
                     return;
-                }
-                popup.focus();
+                } else popup.focus();
                 break;
             }
         }
+
+        this.waitForAuth();
     }
 
     on(event: FurWazPortalEvent, callback: FurWazPortalCallback) {
