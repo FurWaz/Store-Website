@@ -104,7 +104,7 @@ export default class FurWazPortal {
             }
 
             case 'redirect':
-                window.location.href = url + '&redirect=' + window.location.href + "&token=" + this.portalToken;
+                window.location.href = url + '&redirect=' + encodeURIComponent(window.location.href + "&token=" + this.portalToken);
                 break;
 
             default: {
