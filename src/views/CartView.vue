@@ -212,7 +212,7 @@
             </div>
         </div>
         <div v-if="products && products.length === 0"
-            class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
+            class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2 p-2">
             <p class="text-2xl font-semibold text-center">
                 <GetText file="cart" code="emptyCart" />
             </p>
@@ -227,7 +227,8 @@
                 </ButtonView>
             </div>
         </div>
-        <div v-if="!products" class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
+        <div v-if="!products"
+            class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2 p-2">
             <p class="text-2xl font-semibold text-center">
                 <GetText file="cart" code="loadingCart" />
             </p>
