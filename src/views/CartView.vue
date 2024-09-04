@@ -213,10 +213,10 @@
         </div>
         <div v-if="products && products.length === 0"
             class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
-            <p class="text-2xl font-semibold">
+            <p class="text-2xl font-semibold text-center">
                 <GetText file="cart" code="emptyCart" />
             </p>
-            <p class="text-lg font-semibold">
+            <p class="text-lg font-semibold text-center">
                 <GetText file="cart" code="emptyCartDesc" />
             </p>
             <div class="show-down flex pt-16">
@@ -228,10 +228,10 @@
             </div>
         </div>
         <div v-if="!products" class="show-down flex flex-col grow w-full h-full justify-center items-center space-y-2">
-            <p class="text-2xl font-semibold">
+            <p class="text-2xl font-semibold text-center">
                 <GetText file="cart" code="loadingCart" />
             </p>
-            <p class="text-lg font-semibold">
+            <p class="text-lg font-semibold text-center">
                 <GetText file="cart" code="loadingCartDesc" />
             </p>
             <div class="pt-8">

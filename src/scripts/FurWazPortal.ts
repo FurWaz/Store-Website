@@ -65,7 +65,7 @@ export default class FurWazPortal {
             });
     }
 
-    open(mode: FurWazPortalOpenMode = (isMobile()? 'redirect': 'popup')) {
+    open(mode: FurWazPortalOpenMode = (isMobile()? 'tab': 'popup')) {
         if (!this.portalToken) {
             console.error('FurWazPortal open error', 'portalToken not found');
             this.triggerEvent('error', 'portalToken not found');
