@@ -8,10 +8,10 @@ export default {
     },
     FURWAZ: {
         USER: {
-            GET: (id: number) => new Route(`https://main.apis.furwaz.fr/users/${id}`, METHOD.GET)
+            GET: (id: number) => new Route(`https://api.furwaz.com/users/${id}`, METHOD.GET)
         },
         APP: {
-            GET: (id: number) => new Route(`https://main.apis.furwaz.fr/apps/${id}`, METHOD.GET)
+            GET: (id: number) => new Route(`https://api.furwaz.com/apps/${id}`, METHOD.GET)
         }
     },
     USER: {
