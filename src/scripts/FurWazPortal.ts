@@ -91,7 +91,7 @@ export default class FurWazPortal {
             return;
         }
 
-        const url = `https://furwaz.com/portal?token=${this.portalToken}`;
+        const url = `https://furwaz.com/portal?token=${this.portalToken}?redirect=${window.location.href}`;
         switch (mode) {
             case 'tab': {
                 const tab = window.open(url, '_blank');
