@@ -1,0 +1,77 @@
+export default {
+    name: 'Compte',
+    title: 'Gérez votre compte, informations personnelles, commandes, et panier.',
+    description: 'Consultez, modifiez et gérez votre compte, vos informations personnelles, et vos achats sur le Magasin FurWaz !',
+    dangerZone: 'Zone de danger',
+    deleteAccount: {
+        title: 'Supprimer mon compte',
+        description: 'Supprimez définitivement votre compte FurWaz Store ?\nAttention, cette action est irréversible.',
+    },
+    deleteInfos: {
+        title: 'Supprimer mes informations personnelles',
+        description: 'Supprimez toutes vos informations personnelles de votre compte FurWaz Store ?\nAttention, cette action est irréversible.',
+    },
+    informations: {
+        title: 'Mes informations',
+        description: 'Consultez et modifiez vos informations personnelles.',
+        myAccount: 'Mon compte',
+        myInfos: 'Mes informations',
+        deleteAccount: {
+            button: 'Supprimer mon compte',
+            title: 'Supprimer mon compte FurWaz Store',
+            description: 'Supprimez définitivement votre compte FurWaz Store ?\nAttention, cette action est irréversible.',
+        },
+        deleteInfos: {
+            button: 'Supprimer mes informations',
+            title: 'Supprimer mes informations personnelles',
+            description: 'Supprimez toutes vos informations personnelles de votre compte FurWaz Store ?\nAttention, cette action est irréversible.',
+        }
+    },
+    cart: {
+        title: 'Mon panier',
+        description: 'Consultez et modifiez les produits de votre panier.',
+        product: {
+            title: 'Produit',
+            description: 'Description',
+            quantity: 'Quantité',
+            price: 'Prix',
+        },
+        summary: 'Résumé',
+        total: 'Total',
+        informations: {
+            title: 'Informations',
+            my: 'Mes informations',
+            lastName: 'Nom',
+            firstName: 'Prénom',
+            email: 'Adresse mail',
+            phone: 'Téléphone',
+            address: 'Adresse',
+            city: 'Ville',
+            postalCode: 'Code postal',
+            country: 'Pays',
+            save: 'Enregistrer les informations',
+            specifyLastName: 'Spécifiez votre nom de famille',
+            specifyFirstName: 'Spécifiez votre prénom',
+            specifyEmail: 'Spécifiez votre adresse mail',
+            specifyPhone: 'Spécifiez votre numéro de téléphone',
+            specifyAddress: 'Spécifiez votre adresse',
+            specifyCity: 'Spécifiez votre ville',
+            specifyPostalCode: 'Spécifiez votre code postal',
+            specifyCountry: 'Spécifiez votre pays',
+        },
+        payment: 'Paiement',
+        loading: {
+            title: 'Chargement du panier',
+            description: 'Chargement des produits de votre panier...',
+        },
+        empty: {
+            title: 'Votre panier est vide',
+            description: 'Ajoutez des produits à votre panier pour les acheter.',
+            button: 'Voir les produits',
+        },
+    },
+    orders: {
+        title: 'Mes commandes',
+        description: 'Consultez et suivez l\'état de vos commandes.',
+    },
+}
