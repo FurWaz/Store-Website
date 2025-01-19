@@ -49,9 +49,9 @@ if (!productId) {
     }
 
     useSeoMeta({
-        title: `${t('store.title')} - ${t('order.title', {product: productName.value})}`,
+        title: `${t('store.title')} - ${productName.value}`,
         description: `${productName.value} - ${productDescription.value}`,
-        ogTitle: `${t('store.title')} - ${t('order.title', {product: productName.value})}`,
+        ogTitle: `${t('store.title')} - ${productName.value}`,
         ogDescription: `${productName.value} - ${productDescription.value}`,
         ogImage: '/icon.png',
         ogUrl: 'https://store.furwaz.com' + route.fullPath
